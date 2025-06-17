@@ -26,7 +26,7 @@ export default function SearchFood(){
                     const allFoodItemsWithDuplicates = tempdata.filter(cat => cat?.card?.card?.itemCards).flatMap(cat => cat.card.card.itemCards);
 
 
-                    //remove duplicate items
+                    
                     const uniqueItemsMap = new Map();
                     allFoodItemsWithDuplicates.forEach(item => {uniqueItemsMap.set(item?.card?.info?.id, item);});
                     const uniqueItemsArray = Array.from(uniqueItemsMap.values());
@@ -35,24 +35,23 @@ export default function SearchFood(){
             fetchdata();},[id])
 
     useEffect(() => {
-        // Agar search box khaali hai, to results bhi khaali kar do
+       
         if (food === "") {
             setFilteredResults([]);
-            return; // Function se bahar nikal jao
+            return;
         }
 
-        // Ab allItems par filter lagao
+ 
         console.log(`Filtering for: "${food}"`);
         const results = allItems.filter(item =>
-            // Item ke naam ko lowercase karo aur check karo ki usmein search query (lowercase mein) hai ya nahi
+           
             item?.card?.info?.name.toLowerCase().includes(food.toLowerCase())
         );
 
-        // Filtered results ko state mein set kar do
+        
         setFilteredResults(results);
-        // console.log("Found results:", results);
-
-    }, [food, allItems]); // Iski dependency 'food' aur 'allItems' hai.
+      
+    }, [food, allItems]); 
 
 
     
